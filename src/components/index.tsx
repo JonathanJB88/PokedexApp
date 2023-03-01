@@ -3,4 +3,4 @@ export * from './NotFound';
 export * from './PokemonCard';
 export * from './SearchInput';
 export * from './FadeInImage';
-export * from './PokemonDetails';
+export * from './PokemonDetail';

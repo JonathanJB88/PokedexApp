@@ -7,15 +7,30 @@ import {
   SimplePokemon,
 } from '../interfaces/pokemonInterfaces';
 
+const pokemonNoImg = [
+  '10143',
+  '10145',
+  '10264',
+  '10265',
+  '10266',
+  '10267',
+  '10268',
+  '10269',
+  '10270',
+  '10271',
+];
+
 export const usePokemon = () => {
   //
   const [isLoading, setIsLoading] = useState(true);
+  const [isReached, setIsReached] = useState(false);
   const [simplePokemonList, setSimplePokemonList] = useState<SimplePokemon[]>(
     [],
   );
   const nextUrlPage = useRef('https://pokeapi.co/api/v2/pokemon?limit=40');
 
   const loadPokemons = async () => {
+    if (isReached) return;
     setIsLoading(true);
     const resp = await pokemonApi.get<PokemonResponse>(nextUrlPage.current);
     nextUrlPage.current = resp.data.next;
@@ -31,7 +46,15 @@ export const usePokemon = () => {
       return { id, picture, name };
     });
 
-    setSimplePokemonList([...simplePokemonList, ...newPokemonList]);
+    const pokeFilter = newPokemonList.filter(poke => {
+      const invalidPokemon = pokemonNoImg.find(
+        invalidPokemon => invalidPokemon === poke.id,
+      );
+      return !invalidPokemon;
+    });
+    const pokemons = [...simplePokemonList, ...pokeFilter];
+    setSimplePokemonList(pokemons);
+    setIsReached(pokemons.length >= 1269);
     setIsLoading(false);
   };
 
@@ -41,6 +64,7 @@ export const usePokemon = () => {
 
   return {
     isLoading,
+    isReached,
     simplePokemonList,
     loadPokemons,
   };

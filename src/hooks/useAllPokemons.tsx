@@ -7,6 +7,19 @@ import {
   SimplePokemon,
 } from '../interfaces/pokemonInterfaces';
 
+const pokemonNoImg = [
+  '10143',
+  '10145',
+  '10264',
+  '10265',
+  '10266',
+  '10267',
+  '10268',
+  '10269',
+  '10270',
+  '10271',
+];
+
 export const useAllPokemons = () => {
   //
   const [isFetching, setIsFetching] = useState(true);
@@ -30,7 +43,14 @@ export const useAllPokemons = () => {
       return { id, picture, name };
     });
 
-    setSimplePokemonList(newPokemonList);
+    const pokeFilter = newPokemonList.filter(poke => {
+      const invalidPokemon = pokemonNoImg.find(
+        invalidPokemon => invalidPokemon === poke.id,
+      );
+      return !invalidPokemon;
+    });
+
+    setSimplePokemonList(pokeFilter);
     setIsFetching(false);
   };
 

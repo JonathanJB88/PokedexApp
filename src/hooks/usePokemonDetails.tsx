@@ -10,6 +10,7 @@ export const usePokemonDetails = (id: string) => {
   );
 
   const loadPokemonDetails = async () => {
+    setIsLoading(true);
     const response = await pokemonApi.get<PokemonDetails>(
       `https://pokeapi.co/api/v2/pokemon/${id}`,
     );

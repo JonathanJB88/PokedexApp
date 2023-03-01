@@ -1,17 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Image,
-} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import ImageColors from 'react-native-image-colors';
 import { FadeInImage } from './FadeInImage';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParams } from '../navigator/HomeTab';
 
 const windowWidth = Dimensions.get('window').width;

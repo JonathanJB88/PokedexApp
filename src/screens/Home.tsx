@@ -1,5 +1,12 @@
 import React from 'react';
-import { Image, FlatList, ActivityIndicator, Text, View } from 'react-native';
+import {
+  Image,
+  FlatList,
+  ActivityIndicator,
+  Text,
+  View,
+  VirtualizedList,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PokemonCard } from '../components';
@@ -10,7 +17,7 @@ import { styles } from '../theme/appTheme';
 export const Home = () => {
   //
   const { top } = useSafeAreaInsets();
-  const { simplePokemonList, loadPokemons } = usePokemon();
+  const { simplePokemonList, isReached, loadPokemons } = usePokemon();
 
   return (
     <>
@@ -42,9 +49,27 @@ export const Home = () => {
           //Infinite Scroll
           onEndReached={loadPokemons}
           onEndReachedThreshold={0.4}
-          ListFooterComponent={
-            <ActivityIndicator style={{ height: 100 }} size={20} color="grey" />
-          }
+          ListFooterComponent={() => (
+            <>
+              {isReached ? (
+                <Text
+                  style={{
+                    height: 120,
+                    textAlign: 'center',
+                    color: 'rgba(0,0,0,0.6)',
+                    fontSize: 20,
+                  }}>
+                  No more pokemons
+                </Text>
+              ) : (
+                <ActivityIndicator
+                  style={{ height: 100 }}
+                  size={20}
+                  color="grey"
+                />
+              )}
+            </>
+          )}
         />
       </View>
     </>

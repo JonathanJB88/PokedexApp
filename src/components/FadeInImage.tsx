@@ -15,6 +15,8 @@ interface Props {
   style?: StyleProp<ImageStyle>;
 }
 
+const defaultImg = 'https://www.pngall.com/wp-content/uploads/4/Pokeball.png';
+
 export const FadeInImage = ({ uri, style = {} }: Props) => {
   //
   const { opacity, fadeIn } = useAnimation();
@@ -45,7 +47,7 @@ export const FadeInImage = ({ uri, style = {} }: Props) => {
       )}
 
       <Animated.Image
-        source={{ uri }}
+        source={{ uri: uri === null ? defaultImg : uri }}
         onError={onError}
         onLoad={finishLoading}
         style={{

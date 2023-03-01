@@ -23,9 +23,10 @@ export const Pokemon = ({ navigation, route }: Props) => {
   const { name, id, picture } = simplePokemon;
   const { top } = useSafeAreaInsets();
   const { isLoading, pokemon } = usePokemonDetails(id);
-  const isVisible = useRef(true);
+  const isVisible = useRef<boolean>(true);
 
   const handleBack = () => {
+    if (isLoading) return;
     if (isVisible.current) {
       navigation.pop();
       isVisible.current = false;
@@ -40,9 +41,7 @@ export const Pokemon = ({ navigation, route }: Props) => {
         <TouchableOpacity
           activeOpacity={0.8}
           style={{ ...styles.backBtn, top: top + 5 }}
-          onPress={() => {
-            handleBack();
-          }}>
+          onPress={handleBack}>
           <Icon
             name="return-down-back-outline"
             color="white"
@@ -52,6 +51,7 @@ export const Pokemon = ({ navigation, route }: Props) => {
         </TouchableOpacity>
         {/* Pokemon name */}
         <Text
+          numberOfLines={2}
           style={{
             ...styles.pokemonName,
             top: top + 40,
