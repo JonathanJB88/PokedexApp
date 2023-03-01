@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleProp, ViewStyle } from 'react-native';
-import { View, StyleSheet, TextInput } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  StyleProp,
+  ViewStyle,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { useDebouncedValue } from '../hooks';

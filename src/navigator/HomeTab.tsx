@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import { Home, Pokemon } from '../screens';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 

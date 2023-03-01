@@ -8,7 +8,8 @@ import {
   StyleProp,
   View,
 } from 'react-native';
-import { useAnimation } from '../hooks/useAnimation';
+
+import { useAnimation } from '../hooks';
 
 interface Props {
   uri: string;

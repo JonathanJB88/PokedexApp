@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Image,
-  FlatList,
-  ActivityIndicator,
-  Text,
-  View,
-  VirtualizedList,
-} from 'react-native';
+import { Image, FlatList, ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { PokemonCard } from '../components';

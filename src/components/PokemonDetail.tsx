@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Platform } from 'react-native';
+
 import { PokemonDetails } from '../interfaces/pokemonInterfaces';
-import { FadeInImage } from './FadeInImage';
+import { FadeInImage } from './';
 
 interface Props {
   pokemon: PokemonDetails;
