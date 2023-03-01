@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { View, Platform, Text, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Loading, PokemonCard, SearchInput, NotFound } from '../components';
-import { useAllPokemons } from '../hooks';
-import { SimplePokemon } from '../interfaces/pokemonInterfaces';
+import { useAllPokemons, useSearch } from '../hooks';
 
 import { styles } from '../theme/appTheme';
 
@@ -15,26 +14,7 @@ export const Search = () => {
   //
   const { top } = useSafeAreaInsets();
   const { isFetching, simplePokemonList } = useAllPokemons();
-  const [filteredPokemons, setFilteredPokemons] = useState<SimplePokemon[]>([]);
-  const [term, setTerm] = useState('');
-
-  useEffect(() => {
-    if (term.length === 0) {
-      return setFilteredPokemons([]);
-    }
-
-    if (isNaN(Number(term))) {
-      const pokemonByName = simplePokemonList.filter(pokemon =>
-        pokemon.name.toLowerCase().includes(term.toLowerCase()),
-      );
-      setFilteredPokemons(pokemonByName);
-    } else {
-      const pokemonById = simplePokemonList.find(
-        pokemon => pokemon.id === term,
-      );
-      setFilteredPokemons(pokemonById ? [pokemonById] : []);
-    }
-  }, [term]);
+  const { filteredPokemons, term, setTerm } = useSearch(simplePokemonList);
 
   if (isFetching) {
     return <Loading />;
