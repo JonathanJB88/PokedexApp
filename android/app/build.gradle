@@ -99,9 +99,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.pokedexapp"
+    namespace "com.jonathanbracho.pokedexappjonidev"
     defaultConfig {
-        applicationId "com.pokedexapp"
+        applicationId "com.jonathanbracho.pokedexappjonidev"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
