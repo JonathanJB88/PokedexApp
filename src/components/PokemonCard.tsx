@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +17,7 @@ interface Props {
 
 type ScreenNavigationProp = StackNavigationProp<RootStackParams, 'Pokemon'>;
 
-export const PokemonCard = ({ pokemon }: Props) => {
+const PokemonCard = ({ pokemon }: Props) => {
   //
   const [bgColor, setBgColor] = useState('grey');
 
@@ -77,6 +77,8 @@ export const PokemonCard = ({ pokemon }: Props) => {
     </TouchableOpacity>
   );
 };
+
+export default memo(PokemonCard);
 
 const styles = StyleSheet.create({
   cardContainer: {
