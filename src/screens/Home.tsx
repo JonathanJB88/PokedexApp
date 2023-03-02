@@ -1,12 +1,13 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { Image, FlatList, ActivityIndicator, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import SplashScreen from 'react-native-splash-screen';
 
+import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import PokemonCard from '../components/PokemonCard';
 import { usePokemon } from '../hooks';
 
 import { styles } from '../theme/appTheme';
-import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 
 export const Home = () => {
   //
@@ -54,6 +55,10 @@ export const Home = () => {
       )}
     </>
   );
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <>

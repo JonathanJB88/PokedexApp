@@ -3,7 +3,8 @@ import { Dimensions, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { View, Platform, Text, FlatList } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Loading, PokemonCard, SearchInput, NotFound } from '../components';
+import { Loading, SearchInput, NotFound } from '../components';
+import PokemonCard from '../components/PokemonCard';
 import { useAllPokemons, useSearch } from '../hooks';
 
 import { styles } from '../theme/appTheme';
